@@ -1,0 +1,50 @@
+{
+  "name": "yurinet-next",
+  "productName": "YuriNET 2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main/index.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "next build renderer && next export renderer",
+    "dist": "npm run build && build --dir"
+  },
+  "build": {
+    "asar": false,
+    "extraResources": [
+      {
+        "from": "renderer/out",
+        "to": "app/renderer"
+      }
+    ]
+  },
+  "devDependencies": {
+    "electron": "3.0.7",
+    "electron-builder": "20.29.0",
+    "next": "latest",
+    "react": "16.6.0",
+    "react-dom": "16.6.0"
+  },
+  "dependencies": {
+    "electron-is-dev": "1.0.1",
+    "electron-next": "3.1.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/icharge/yurinet-next.git"
+  },
+  "keywords": [
+    "YuriNET",
+    "Online",
+    "Game",
+    "CNC",
+    "Westwood",
+    "Red Alert 2",
+    "Yuri's Revenge"
+  ],
+  "author": "Norrapat Nimmanee <ThaiRA2Lovers Admin>",
+  "bugs": {
+    "url": "https://github.com/icharge/yurinet-next/issues"
+  },
+  "homepage": "https://github.com/icharge/yurinet-next#readme"
+}

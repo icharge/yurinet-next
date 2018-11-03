@@ -1,0 +1,48 @@
+{
+  "env": {
+      "browser": true,
+      "es6": true,
+      "node": true
+  },
+  "plugins": [
+      "react"
+  ],
+  "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended"
+  ],
+  "parser": "babel-eslint",
+  "parserOptions": {
+      "ecmaVersion": 2016,
+      "sourceType": "module"
+  },
+  "rules": {
+      "indent": [
+          "error",
+          2,
+          {
+              "SwitchCase": 1
+          }
+      ],
+      "quotes": [
+          "error",
+          "single",
+          {
+              "avoidEscape": true
+          }
+      ],
+      "semi": [
+          "error",
+          "always"
+      ],
+      "no-unused-vars": "off",
+      "no-extra-boolean-cast": "off",
+      "react/prop-types": [
+          2,
+          {
+              "skipUndeclared": true
+          }
+      ],
+      "react/display-name": [0]
+  }
+}

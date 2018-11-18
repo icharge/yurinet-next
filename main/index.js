@@ -25,7 +25,7 @@ app.on('ready', async () => {
     : format({
       pathname: join(__dirname, '../renderer/start/index.html'),
       protocol: 'file:',
-      slashes: true
+      slashes: true,
     });
 
   mainWindow.loadURL(url);

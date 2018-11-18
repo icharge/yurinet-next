@@ -1,18 +1,26 @@
 {
   "name": "yurinet-next",
   "productName": "YuriNET 2",
-  "version": "1.0.0",
-  "description": "",
+  "version": "2.0.0",
+  "description": "YuriNET, A Yuri's Revenge client helper",
   "main": "main/index.js",
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
     "start": "cross-env NODE_ENV=development electron .",
     "build": "next build renderer && next export renderer",
-    "dist": "npm run build && build --dir"
+    "pack": "build --dir",
+    "pack-win": "build",
+    "pack-win-debug": "cross-env DEBUG=electron-builder build",
+    "dist": "npm run build && npm run pack-win"
   },
   "build": {
-    "appId": "com.thaira2.autoupdate",
+    "appId": "com.thaira2.yurinet2",
     "productName": "YuriNET 2",
+    "files": [
+      "**/*",
+      "!renderer",
+      "renderer/out"
+    ],
     "win": {
       "icon": "icons/icon.ico",
       "target": [
@@ -20,9 +28,9 @@
       ]
     },
     "squirrelWindows": {
-      "iconUrl": ""
+      "iconUrl": "https://raw.githubusercontent.com/matiastucci/electron-auto-updater-example/master/icons/icon.ico"
     },
-    "asar": false,
+    "asar": true,
     "extraResources": [
       {
         "from": "renderer/out",
@@ -36,7 +44,8 @@
     "babel-eslint": "10.0.1",
     "babel-plugin-styled-components": "1.8.0",
     "electron": "3.0.7",
-    "electron-builder": "20.29.0",
+    "electron-builder": "20.36.0",
+    "electron-builder-squirrel-windows": "^20.36.0",
     "eslint": "5.8.0",
     "eslint-plugin-react": "7.11.1",
     "immutable": "4.0.0-rc.12",
@@ -62,6 +71,7 @@
     "styled-components": "4.0.3"
   },
   "dependencies": {
+    "cross-env": "^5.2.0",
     "electron-is-dev": "1.0.1",
     "electron-next": "3.1.5",
     "electron-squirrel-startup": "^1.0.0"

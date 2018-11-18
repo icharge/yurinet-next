@@ -6,9 +6,9 @@ const appVersion = require('./package.json').version;
 let updateFeed = '';
 let initialized = false;
 // const platform = `${os.platform()}_${os.arch()}`;
-const nutsURL = 'http://thaira2.com';
+const nutsURL = 'http://play.thaira2.com';
 
-updateFeed = `${nutsURL}/update/${appVersion}.ver`;
+updateFeed = `${nutsURL}/update/${appVersion}`;
 
 console.log(`App version : ${appVersion}`);
 console.log(`Update URL : ${updateFeed}`);
@@ -17,7 +17,7 @@ function init(mainWindow) {
   mainWindow.webContents.send('console', `App version: ${appVersion}`);
   mainWindow.webContents.send('message', { msg: `🖥 App version: ${appVersion}` });
 
-  if (initialized || !updateFeed/*  || process.env.NODE_ENV === 'development' */) { return; }
+  if (initialized || !updateFeed || process.env.NODE_ENV === 'development') { return; }
 
   console.log('Auto update started.');
 

@@ -63,7 +63,8 @@
   },
   "dependencies": {
     "electron-is-dev": "1.0.1",
-    "electron-next": "3.1.5"
+    "electron-next": "3.1.5",
+    "electron-squirrel-startup": "^1.0.0"
   },
   "repository": {
     "type": "git",

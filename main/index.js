@@ -4,6 +4,11 @@ const { format } = require('url');
 
 // Packages
 const { BrowserWindow, app, ipcMain } = require('electron');
+
+if (require('electron-squirrel-startup')) app.quit();
+
+const autoUpdater = require('../autoUpdater');
+
 const isDev = require('electron-is-dev');
 const prepareNext = require('electron-next');
 
@@ -29,6 +34,10 @@ app.on('ready', async () => {
     });
 
   mainWindow.loadURL(url);
+  mainWindow.webContents.openDevTools();
+  mainWindow.webContents.on('did-finish-load', () => {
+    autoUpdater.init(mainWindow);
+  });
 });
 
 // Quit the app once all windows are closed

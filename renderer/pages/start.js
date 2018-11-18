@@ -18,6 +18,8 @@ export default class extends Component {
 
   handleMessage = (event, message) => {
     // receive a message from the main process and save it in the local state
+    message = JSON.stringify(message);
+    console.log('Received message :', message);
     this.setState({ message });
   }
 

@@ -20,6 +20,11 @@ export default class extends Component {
     // receive a message from the main process and save it in the local state
     message = JSON.stringify(message);
     console.log('Received message :', message);
+
+    if (message.update) {
+      global.quitAndInstall();
+    }
+
     this.setState({ message });
   }
 

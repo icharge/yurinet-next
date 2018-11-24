@@ -1,14 +1,13 @@
-const electron = require('electron');
+const { autoUpdater } = require('electron');
 // const os = require('os');
-const autoUpdater = electron.autoUpdater;
 const appVersion = require('./package.json').version;
 
 let updateFeed = '';
 let initialized = false;
 // const platform = `${os.platform()}_${os.arch()}`;
-const nutsURL = 'http://play.thaira2.com';
+const updateURL = 'http://play.thaira2.com';
 
-updateFeed = `${nutsURL}/update/${appVersion}`;
+updateFeed = `${updateURL}/update/?current=${appVersion}`;
 
 console.log(`App version : ${appVersion}`);
 console.log(`Update URL : ${updateFeed}`);
@@ -43,7 +42,12 @@ function init(mainWindow) {
 
   autoUpdater.on('update-downloaded', (ev, err) => {
     const msg = '<p style="margin: 0;">🤘 Update downloaded - <a onclick="quitAndInstall()">Restart</a></p>';
-    mainWindow.webContents.send('message', { msg, hide: false, replaceAll: true });
+    mainWindow.webContents.send('message', {
+      msg,
+      hide: false,
+      replaceAll: true,
+      update: true,
+    });
   });
 
   autoUpdater.checkForUpdates();

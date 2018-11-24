@@ -1,7 +1,7 @@
 {
   "name": "yurinet-next",
   "productName": "YuriNET 2",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "YuriNET, A Yuri's Revenge client helper",
   "main": "main/index.js",
   "scripts": {

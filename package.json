@@ -6,6 +6,7 @@
   "main": "main/index.js",
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
+    "dev": "next renderer",
     "start": "cross-env NODE_ENV=development electron .",
     "build": "next build renderer && next export renderer",
     "pack": "build --dir",

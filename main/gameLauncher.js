@@ -1,14 +1,15 @@
 const cp = require('child_process');
+const { ipcMain } = require('electron');
 
-exports.spawnGame = ({
-  gameDir,
+const spawnGame = ({
+  gameDir = '',
   gameExe = 'gamemd.exe',
-  hostUri,
+  hostUri = '',
   graphic,
-  args,
+  args = [],
   isWindowMode,
   isAres,
-}) => {
+} = {}) => {
   /***
    * If it need to run as admin. Then use Pipe of something that
    * can communicate that process is running or not.
@@ -34,3 +35,9 @@ exports.spawnGame = ({
 
   return child;
 };
+exports.spawnGame = spawnGame;
+
+ipcMain.on('startGame', (event, options) => {
+  // event.sender.send('message', message);
+  global.childProc = spawnGame(options);
+});

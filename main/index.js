@@ -7,6 +7,7 @@ const { BrowserWindow, app, ipcMain } = require('electron');
 
 if (require('electron-squirrel-startup')) app.quit();
 
+require('./gameLauncher');
 const autoUpdater = require('../autoUpdater');
 
 const isDev = require('electron-is-dev');

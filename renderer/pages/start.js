@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import game from '../lib/electron/game';
 
 export default class extends Component {
   state = {
@@ -38,6 +39,10 @@ export default class extends Component {
     this.setState({ message: null });
   }
 
+  handleStartGame = event => {
+    game.startGame();
+  }
+
   render() {
     return (
       <div>
@@ -57,6 +62,8 @@ export default class extends Component {
             font-size: 50px;
           }
         `}</style>
+
+        <button type="button" onClick={this.handleStartGame}>Test launch</button>
       </div>
     );
   }

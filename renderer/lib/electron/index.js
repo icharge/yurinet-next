@@ -23,7 +23,22 @@ class ElectronUtil {
 
   }
 
+  /**
+   * Get IPC for Renderer side
+   * 
+   * @param {(cb: Electron.IpcRenderer => void 0)} availableCb 
+   * @param {Function} notAvailable 
+   * @returns {Electron.IpcRenderer}
+   */
   getIpcRenderer(availableCb, notAvailable = NOOP) {
+    if (typeof availableCb === 'function') {
+      if (ipcRenderer) {
+        availableCb(ipcRenderer);
+      } else {
+        notAvailable();
+      }
+    }
+
     return ipcRenderer;
   }
 

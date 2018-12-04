@@ -8,11 +8,13 @@ class Game {
 
   startGame() {
     const ipcRenderer = electronUtil.getIpcRenderer();
-    ipcRenderer.send('startGame', {
-      gameDir: this.gameDir,
-      isAres: true,
-      hostUri: 'localhost:8888',
-    });
+    if (ipcRenderer) {
+      ipcRenderer.send('startGame', {
+        gameDir: this.gameDir,
+        isAres: true,
+        hostUri: 'localhost:8888',
+      });
+    }
   }
 
 }

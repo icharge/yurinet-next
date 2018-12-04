@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import game from '../lib/electron/game';
+import { Button } from 'semantic-ui-react';
+import electronUtil from '../lib/electron';
 
 export default class extends Component {
   state = {
@@ -7,14 +9,29 @@ export default class extends Component {
     message: null,
   }
 
+  /**
+   * @type {Electron.IpcRenderer}
+   */
+  ipcRenderer;
+
+  constructor(props) {
+    super(props);
+
+    this.ipcRenderer = electronUtil.getIpcRenderer(ipc => this.ipcRenderer = ipc);
+  }
+
   componentDidMount() {
     // start listening the channel message
-    global.ipcRenderer.on('message', this.handleMessage);
+    if (this.ipcRenderer) {
+      this.ipcRenderer.on('message', this.handleMessage);
+    }
   }
 
   componentWillUnmount() {
     // stop listening the channel message
-    global.ipcRenderer.removeListener('message', this.handleMessage);
+    if (this.ipcRenderer) {
+      this.ipcRenderer.removeListener('message', this.handleMessage);
+    }
   }
 
   handleMessage = (event, message) => {
@@ -35,7 +52,9 @@ export default class extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    global.ipcRenderer.send('message', this.state.input);
+    if (this.ipcRenderer) {
+      this.ipcRenderer.send('message', this.state.input);
+    }
     this.setState({ message: null });
   }
 
@@ -63,7 +82,7 @@ export default class extends Component {
           }
         `}</style>
 
-        <button type="button" onClick={this.handleStartGame}>Test launch</button>
+        <Button type="button" onClick={this.handleStartGame}>Test launch</Button>
       </div>
     );
   }

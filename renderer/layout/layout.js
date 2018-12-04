@@ -6,9 +6,13 @@ import Header from './header';
 class MyLayout extends Component {
 
   render() {
-
+    const {
+      children,
+    } = this.props;
     return (
-      <div></div>
+      <div>
+        {children}
+      </div>
     );
   }
 

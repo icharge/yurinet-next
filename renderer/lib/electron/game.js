@@ -1,4 +1,5 @@
 import electronUtil from '.';
+import myModal from '../modal';
 
 
 class Game {
@@ -15,7 +16,11 @@ class Game {
         hostUri: 'localhost:8888',
       });
     } else {
-      alert('Please Start game on YuriNET 2 Desktop.');
+      // alert('Please Start game on YuriNET 2 Desktop.');
+      myModal({
+        title: 'Starting game',
+        content: 'Please Start game on YuriNET 2 Desktop.',
+      });
     }
   }
 

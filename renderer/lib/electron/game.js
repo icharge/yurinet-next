@@ -14,6 +14,8 @@ class Game {
         isAres: true,
         hostUri: 'localhost:8888',
       });
+    } else {
+      alert('Please Start game on YuriNET 2 Desktop.');
     }
   }
 

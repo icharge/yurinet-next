@@ -26,16 +26,16 @@ class ElectronUtil {
   /**
    * Get IPC for Renderer side
    * 
-   * @param {(cb: Electron.IpcRenderer => void 0)} availableCb 
-   * @param {Function} notAvailable 
+   * @param {(cb: Electron.IpcRenderer => void 0)} callback 
+   * @param {Function} fallback 
    * @returns {Electron.IpcRenderer}
    */
-  getIpcRenderer(availableCb, notAvailable = NOOP) {
-    if (typeof availableCb === 'function') {
+  getIpcRenderer(callback, fallback = NOOP) {
+    if (typeof callback === 'function') {
       if (ipcRenderer) {
-        availableCb(ipcRenderer);
+        callback(ipcRenderer);
       } else {
-        notAvailable();
+        fallback();
       }
     }
 
